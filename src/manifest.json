@@ -1,7 +1,10 @@
 {
+    "include": [
+      "$(MODDABLE)/modules/network/ble/manifest_server.json"
+    ],
     "preload": [
 		  "helpers/*",
-		  "express-js-mod",
+		  "improv-wifi-mod",
 		  "http"
 	  ],
     "modules": {

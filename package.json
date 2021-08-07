@@ -1,19 +1,19 @@
 {
-  "name": "express-js-mod",
+  "name": "improv-wifi-mod",
   "version": "1.0.5",
   "description": "An express like router for moddable sdk and XS javascript engine",
-  "main": "./express-js-mod/express-js-mod.js",
+  "main": "./improv-wifi-mod/improv-wifi-mod.js",
   "keywords": "moddable,xs,express,embedded,iot",
-  "homepage": "https://github.com/dashcraft/express-js-mod",
+  "homepage": "https://github.com/dashcraft/improv-wifi-mod",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dashcraft/express-js-mod"
+    "url": "https://github.com/dashcraft/improv-wifi-mod"
   },
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "test": "jest",
-    "postbuild": "cpy ./src/*.json ./express-js-mod"
+    "postbuild": "cpy ./src/*.json ./improv-wifi-mod"
   },
   "author": "Daniel Ashcraft <daniel.ashcraft@ofashandfire.com> (https://www.ofashandfire.com)",
   "license": "GPLv2",
