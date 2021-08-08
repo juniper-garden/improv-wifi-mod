@@ -145,7 +145,7 @@ export default class ImprovWifi extends BLEServer {
         const password = this.buildValue(data, pass_start, pass_end);
         let result = this.onCredentialsRecieved({ ssid, password });
         if (!result) {
-            this.state = StateCodes.STATE_STOPPED;
+            this.state = StateCodes.STATE_AUTHORIZED;
             this.notifyState();
         }
         else {
