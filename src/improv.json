@@ -25,17 +25,18 @@
 			},
 			"RPC_RESULT": {
 				"uuid": "00467768-6228-2272-4663-277478268004",
-				"type": "Uint8",
-				"maxBytes": 8,
+				"type": "Uint8Array",
+				"maxBytes": 20,
 				"permissions": "read",
 				"properties": "notify"
 			},
 			"CAPABILITIES": {
 				"uuid": "00467768-6228-2272-4663-277478268005",
-				"type": "String",
-				"maxBytes": 32,
+				"type": "Uint8",
+				"maxBytes": 1,
 				"permissions": "read",
-				"properties": "notify"
+				"properties": "read",
+				"value": 1
 			}
 		}
 	}

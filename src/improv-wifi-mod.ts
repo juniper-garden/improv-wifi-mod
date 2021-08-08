@@ -17,14 +17,15 @@ export default class ImprovWifi extends BLEServer {
   rpcCharacteristic:any;
   onCredentialsRecieved:any;
   notify: any;
+
   constructor({ deviceName, onCredentialsRecieved }:any) {
     super();
     this.deviceName = deviceName;
     this.state = StateCodes.STATE_AUTHORIZED
     this.error = ErrorCodes.ERROR_NONE
     this.onCredentialsRecieved = onCredentialsRecieved
-    this.couldNotConnect = this.couldNotConnect.bind(this)
   }
+
   startImprov() {
     let advertisingData = {
       flags: GAP.ADFlag.LE_GENERAL_DISCOVERABLE_MODE,
@@ -61,6 +62,16 @@ export default class ImprovWifi extends BLEServer {
   onReady() {
 		this.startImprov()
 	}
+
+  onCharacteristicRead(characteristic: Characteristic) {
+      if(characteristic.name === "STATE") {
+          return this.state
+      }
+
+      if(characteristic.name === "ERROR") {
+          return this.error
+      }
+  }
 
 	onConnected() {
     this.state = StateCodes.STATE_AUTHORIZED
@@ -102,9 +113,9 @@ export default class ImprovWifi extends BLEServer {
         break;
       case 'RPC_RESULT':
         this.rpcCharacteristic = characteristic
-        this.notifyValue(this.notify, Commands.WIFI_SETTINGS)
         break;
       case 'CAPABILITIES':
+        this.notifyValue(this.notify, 0x01);
         break;
       default:
         this.error = ErrorCodes.ERROR_UNKNOWN
@@ -157,10 +168,12 @@ export default class ImprovWifi extends BLEServer {
   }
 
   notifyState(){
+    if(!this.stateCharacteristic) return
     this.notifyValue(this.stateCharacteristic, this.state)
   }
 
   notifyError(){
+    if(!this.errorCharacteristic) return
     this.notifyValue(this.errorCharacteristic, this.error)
   }
 
