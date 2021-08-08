@@ -13,7 +13,7 @@
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "test": "jest",
-    "postbuild": "cpy ./src/*.json ./improv-wifi-mod"
+    "postbuild": "cpy ./src/manifest.json ./improv-wifi-mod && cpy ./src/improv.json ./improv-wifi-mod/bleservices"
   },
   "author": "Daniel Ashcraft <daniel.ashcraft@ofashandfire.com> (https://www.ofashandfire.com)",
   "license": "GPLv2",

@@ -12,6 +12,31 @@ then add the improv-wifi-mod package to your projects manifest.json includes:
 
 `"./improv-wifi-mod/manifest.json"`
 
+as well as including in the root manifest...
+```
+  "ble":{
+		"*": [
+			"./improv-wifi-mod/bleservices/*"
+		]
+	}
+```
+
+A full example is included as `example-manifest.json`
 ## Usage
-First import the primary package
-`import  Improv  from  'improv-wifi-mod'`
+Import the file and instantiate an instance of ImprovWifi
+
+i.e.
+
+```
+import ImprovWifi from "improv-wifi-mod";
+
+let server = new ImprovWifi({
+  deviceName: "Moddable-Test",
+  onCredentialsRecieved: someHandleCredsFunction
+});
+
+function someHandleCredsFunction ({ ssid, password }) {
+  // Handle the credentials here
+}
+```
+

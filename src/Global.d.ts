@@ -1,7 +1,7 @@
 declare var uuid;
 declare module "bleserver" {
     class BLEServer  {
-        constructor(deployServices:boolean){}
+        constructor(){}
         onReady(args?:any){}
         onConnected(device: Device){}
         startAdvertising(params: IStartAdvertisingParams){}
@@ -11,11 +11,21 @@ declare module "bleserver" {
         onCharacteristicWritten(characteristic: Characteristic, value: any){}
         onCharacteristicRead(characteristic: Characteristic){}
         disconnect(){}
+        notifyValue(characteristic: Characteristic, value: any){}
         close(){}
     }
     export {BLEServer as default};
 }
 
+declare module "gap" {
+    const gap:any = {};
+    export {gap as default};
+}
+
+declare module "btutils" {
+    const uuid:any
+    export {uuid};
+}
 interface IStartAdvertisingParams {
     advertisingData: any;
     connectable?: boolean;

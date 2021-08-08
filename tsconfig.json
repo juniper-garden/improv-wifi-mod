@@ -1,5 +1,5 @@
 {
-  "assets": ["./src/manifest.json"],
+  "assets": ["./src/manifest.json", "./src/**/*.json"],
   "include": [
     "src/**/*"
   ],
