@@ -52,6 +52,7 @@ export default class ImprovWifi extends BLEServer {
         this.error = ErrorCodes.ERROR_NONE;
         this.errorCharacteristic = null;
         this.stateCharacteristic = null;
+        this.startImprov();
     }
     onReady() {
         this.startImprov();
@@ -142,9 +143,15 @@ export default class ImprovWifi extends BLEServer {
         const pass_end = pass_start + pass_length;
         const ssid = this.buildValue(data, ssid_start, ssid_end);
         const password = this.buildValue(data, pass_start, pass_end);
-        this.state = StateCodes.STATE_PROVISIONED;
-        this.onCredentialsRecieved({ ssid, password });
-        this.notifyState();
+        let result = this.onCredentialsRecieved({ ssid, password });
+        if (!result) {
+            this.state = StateCodes.STATE_STOPPED;
+            this.notifyState();
+        }
+        else {
+            this.state = StateCodes.STATE_PROVISIONED;
+            this.notifyState();
+        }
     }
     buildValue(data, start, end) {
         let str = '';

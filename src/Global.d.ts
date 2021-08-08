@@ -5,6 +5,7 @@ declare module "bleserver" {
         onReady(args?:any){}
         onConnected(device: Device){}
         startAdvertising(params: IStartAdvertisingParams){}
+        stopAdvertising(){}
         onDisconnected(device: Device){}
         onCharacteristicNotifyEnabled(characteristic: Characteristic){}
         onCharacteristicNotifyDisabled(characteristic: Characteristic){}
