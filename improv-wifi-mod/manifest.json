@@ -1,39 +1,19 @@
 {
-    "build": {
-      "SDKCONFIGPATH": "../sdkconfig",
-      "PARTITIONS_FILE": "../sdkconfig/partitions.csv"
-    },
+  "build": {
+  "SDKCONFIGPATH": "../sdkconfig",
+  "PARTITIONS_FILE": "../sdkconfig/partitions.csv"
+  },
     "include": [
       "$(MODDABLE)/examples/manifest_base.json",
       "$(MODDABLE)/examples/manifest_net.json",
       "$(MODDABLE)/modules/network/ble/manifest_server.json"
     ],
-
-    "platforms": {
-      "esp32": {
-        "modules": {
-          "*": [
-          ]
-        },
-            "preload": [
-              "improv-wifi-mod",
-              "btutils",
-              "gap",
-              "./bleservices/*"
-            ],
-      },
-      "esp32/esp32c3": {
-        "defines": {
-          "i2c": {
-            "sda_pin": 3,
-            "scl_pin": 2
-          },
-        },
-      },
-      "...": {
-        "error": "platform unsupported"
-      }
-    },
+    "preload": [
+      "improv-wifi-mod",
+      "btutils",
+      "gap",
+      "./bleservices/*"
+    ],
     "modules": {
       "*": [
         "./*"
