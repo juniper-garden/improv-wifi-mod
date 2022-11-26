@@ -1,6 +1,6 @@
 import BLEServer from "bleserver";
 import GAP from 'gap'
-import {uuid} from "btutils";
+import { uuid } from "btutils";
 import BLEExports from './consts'
 
 const StateCodes = BLEExports.StateCodes
@@ -29,26 +29,10 @@ export default class ImprovWifi extends BLEServer {
   startImprov() {
     let advertisingData = {
       flags: GAP.ADFlag.LE_GENERAL_DISCOVERABLE_MODE,
+      completeUUID128List: [uuid `00467768-6228-2272-4663-277478268000`],
       completeName: this.deviceName,
-      shortName:this.deviceName,
-      serviceDataUUID128: [uuid`00467768-6228-2272-4663-277478268000`],
-      completeUUID128List: [
-        uuid`00467768-6228-2272-4663-277478268000`,
-        uuid`00467768-6228-2272-4663-277478268001`,
-        uuid`00467768-6228-2272-4663-277478268002`,
-        uuid`00467768-6228-2272-4663-277478268003`,
-        uuid`00467768-6228-2272-4663-277478268004`,
-        uuid`00467768-6228-2272-4663-277478268005`  
-      ],
-      solicitationUUID128List: [
-        uuid`00467768-6228-2272-4663-277478268000`,
-        uuid`00467768-6228-2272-4663-277478268001`,
-        uuid`00467768-6228-2272-4663-277478268002`,
-        uuid`00467768-6228-2272-4663-277478268003`,
-        uuid`00467768-6228-2272-4663-277478268004`,
-        uuid`00467768-6228-2272-4663-277478268005`  
-      ]
-    }
+      shortName: this.deviceName,
+    };
     this.startAdvertising({ advertisingData });
   }
 
@@ -65,13 +49,16 @@ export default class ImprovWifi extends BLEServer {
 	}
 
   onCharacteristicRead(characteristic: Characteristic) {
-      if(characteristic.name === "STATE") {
-          return this.state
-      }
-
-      if(characteristic.name === "ERROR") {
+    switch(characteristic.name){
+      case "ERROR":
+          return this.error;
+      case "STATE":
+      case "RPC_RESULT":
+          return this.state;
+      default:
+          trace(`I have no idea what ${characteristic.name} is supposed to be`)
           return this.error
-      }
+    }
   }
 
 	onConnected() {
