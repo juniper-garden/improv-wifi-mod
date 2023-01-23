@@ -1,4 +1,9 @@
 {
+
+    "build": {
+    "SDKCONFIGPATH": "../sdkconfig",
+    "PARTITIONS_FILE": "../sdkconfig/partitions.csv"
+    },
     "include": [
       "$(MODDABLE)/examples/manifest_base.json",
       "$(MODDABLE)/examples/manifest_net.json",
