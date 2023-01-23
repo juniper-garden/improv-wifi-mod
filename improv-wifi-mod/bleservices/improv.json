@@ -21,11 +21,11 @@
 				"type": "Uint8Array",
 				"maxBytes": 20,
 				"permissions": "write",
-				"properties": "write"
+				"properties": "write,writeNoResponse"
 			},
 			"RPC_RESULT": {
 				"uuid": "00467768-6228-2272-4663-277478268004",
-				"type": "Uint8Array",
+				"type": "Uint8",
 				"maxBytes": 20,
 				"permissions": "read",
 				"properties": "notify"

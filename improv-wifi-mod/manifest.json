@@ -1,19 +1,20 @@
 {
-  "build": {
-  "SDKCONFIGPATH": "../sdkconfig",
-  "PARTITIONS_FILE": "../sdkconfig/partitions.csv"
-  },
+
+    "build": {
+    "SDKCONFIGPATH": "../sdkconfig",
+    "PARTITIONS_FILE": "../sdkconfig/partitions.csv"
+    },
     "include": [
       "$(MODDABLE)/examples/manifest_base.json",
       "$(MODDABLE)/examples/manifest_net.json",
       "$(MODDABLE)/modules/network/ble/manifest_server.json"
     ],
     "preload": [
-      "improv-wifi-mod",
+		  "improv-wifi-mod",
       "btutils",
-      "gap",
+		  "gap",
       "./bleservices/*"
-    ],
+	  ],
     "modules": {
       "*": [
         "./*"

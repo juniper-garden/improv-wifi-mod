@@ -40,3 +40,7 @@ function someHandleCredsFunction ({ ssid, password }) {
 }
 ```
 
+
+
+### Contributions
+@Redaphid and @Loqwai helped debug significant issues/errors with this package, related to improperly advertising data and flags inside the repository: https://github.com/loqwai/juniper-gardens-twig-debug. Thank you both!
